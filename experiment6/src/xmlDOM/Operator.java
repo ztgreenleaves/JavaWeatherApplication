@@ -75,7 +75,7 @@ public class Operator implements iIDUQ {
 		setCity(city);
 		try {
 			db = dbf.newDocumentBuilder();
-			doc = db.parse(fileName);
+			doc = db.parse(path+fileName);
 			root = doc.getDocumentElement();
 			weather.setCity(root.getElementsByTagName("city").item(0).getTextContent());
 			weather.setWendu(root.getElementsByTagName("wendu").item(0).getTextContent());
@@ -89,10 +89,8 @@ public class Operator implements iIDUQ {
 			weather.setQuality(root.getElementsByTagName("quality").item(0).getTextContent());
 			return weather;
 		} catch (Exception e) {
-			//e.printStackTrace();
-			weather.setPm25(null);
-			weather.setQuality(null);
-			weather.setSuggest(null);
+			e.printStackTrace();
+			
 		}
 		return null;
 	}
